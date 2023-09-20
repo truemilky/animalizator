@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peniavskyi Grade #3</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <main id="application">
+        <div class="container">
+            <section class="main">
+                <header class="header">
+                    <div class="header__logo">
+                        <div class="header__logo-image">A</div>
+                        <div class="header__logo-text">Animalizator</div>
+                    </div>
+
+                    <button class="button header__button" type="button" id="faq-btn">FAQ</button>
+                </header>
+
+                <section class="introduction">
+                    <div class="introduction__title">Выберите питомца для продолжения</div>
+
+                    <div class="introduction__animals">
+                        <div class="introduction__animal" data-animal="bear">
+                            <div class="introduction__animal-image">
+                                <img src="images/bear-icon.svg" alt="Bear icon">
+                            </div>
+
+                            <p class="introduction__animal-text">Мишка</p>
+                        </div>
+
+                        <div class="introduction__animal" data-animal="cat">
+                            <div class="introduction__animal-image">
+                                <img src="images/cat-icon.svg" alt="Cat icon">
+                            </div>
+
+                            <p class="introduction__animal-text">Котенок</p>
+                        </div>
+
+                        <div class="introduction__animal" data-animal="dog">
+                            <div class="introduction__animal-image">
+                                <img src="images/dog-icon.svg" alt="Dog icon">
+                            </div>
+
+                            <p class="introduction__animal-text">Собачка</p>
+                        </div>
+
+                        <div class="introduction__animal" data-animal="tiger">
+                            <div class="introduction__animal-image">
+                                <img src="images/tiger-icon.svg" alt="Tiger icon">
+                            </div>
+
+                            <p class="introduction__animal-text">Тигренок</p>
+                        </div>
+                    </div>
+
+                    <button class="button introduction__button" disabled>Продолжить</button>
+                </section>
+
+                <section class="definition untouched hide">
+                    <div class="definition__options">
+                        <div class="definition__image">
+                            <img src="images/bear.svg" alt="">
+                        </div>
+
+                        <div class="definition__information">
+                            <h2 class="definition__title">
+                                Укажите параметры питомца
+                            </h2>
+
+                            <div class="definition__parameters">
+                                <div class="definition__parameter">
+                                    <div class="definition__input">
+                                        Рост: <input name="height" id="height" type="number"> <span>см.</span>
+                                    </div>
+
+                                    <p class="definition__range">диапазон параметров (2-500)</p>
+                                </div>
+
+                                <div class="definition__parameter">
+                                    <div class="definition__input">
+                                        Вес: <input name="weight" id="weight" type="number"> <span>кг.</span>
+                                    </div>
+
+                                    <p class="definition__range">диапазон параметров (2-500)</p>
+                                </div>
+
+                                <div class="definition__parameter">
+                                    <div class="definition__input">
+                                        Имя: <input name="name" id="name" type="text" maxLength="500">
+                                    </div>
+
+                                    <p class="definition__range">количество символов (2-500)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="definition__calculate_wrapper">
+                        <div class="definition__calculate">Определить питомца по параметрам</div>
+                    </div>
+
+                    <div class="definition__result"></div>
+
+                    <button class="button definition__button" disabled>Смотреть фотографию</button>
+                </section>
+
+                <section class="result untouched hide">
+                    <div class="result__title">Перед вами фотография “порода”</div>
+
+                    <div class="result__image">
+                        <img src="images/animals/jack-russell-terrier.jpg" alt="">
+                    </div>
+
+                    <div class="result__name">Имя</div>
+
+                    <button class="button result__button" id="download-image">Скачать фотографию</button>
+                    <button class="button result__button" id="reload">Попробовать еще раз</button>
+                </section>
+
+                <section class="faq hide">
+                    <div class="faq__close-icon" id="faq-close-btn"></div>
+                    <div class="faq__title">
+                        FAQ
+                    </div>
+
+                    <ul class="faq__list">
+                        <li class="faq__list-item">1) Выбираем тип питомца</li>
+                        <li class="faq__list-item">2) Указываем параметры в допустимом диапазоне</li>
+                        <li class="faq__list-item">3) Получаем предполагаемую породу питомца</li>
+                        <li class="faq__list-item">4) Любуемся картинкой животного</li>
+                    </ul>
+                </section>
+            </section>
+        </div>
+
+        <div class="loader__wrapper hide">
+            <div class="loader">
+                <div class="loader__text">
+                    Подождите, пока мы сделаем все сложнейшие вычисления...
+                </div>
+
+                <div class="loader__spinner"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>

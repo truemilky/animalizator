@@ -436,7 +436,7 @@ body {
 
 .loader {
     position: fixed;
-    top: 50%;
+    top: 39%;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -982,6 +982,10 @@ body {
         height: 60px;
         font-size: 24px;
     }
+
+    .loader__text {
+        font-size: 25px;
+    }
 }
 
 @media(max-width: 600px) {
@@ -1107,6 +1111,15 @@ body {
 
     #download-image {
         margin-bottom: 20px;
+    }
+
+    .loader__text {
+        font-size: 20px;
+    }
+
+    .loader {
+        max-width: 290px;
+        padding: 10px;
     }
 }
 

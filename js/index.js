@@ -185,11 +185,17 @@ window.onload = function () {
     });
 
     //Переключаем на третий блок
+    const loadingScreen = document.querySelector('.loader__wrapper');
+
     definitionButton.addEventListener('click', () => {
-        definitionBlock.classList.add('hide');
-        definitionBlock.classList.add('complete');
-        resultBlock.classList.remove('hide');
-        resultBlock.classList.remove('untouched');
+        loadingScreen.style.display = 'block';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            definitionBlock.classList.add('hide');
+            definitionBlock.classList.add('complete');
+            resultBlock.classList.remove('hide');
+            resultBlock.classList.remove('untouched');
+        }, 5000)
     });
 
     //Скачиваем картинку

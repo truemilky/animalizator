@@ -2,10 +2,14 @@ window.onload = function () {
     //Проверяем, есть ли в localStorage объект data из animal.json, если нет - то фетчим и записываем
     (function () {
         if (!localStorage.getItem('data')) {
-            fetch('../js/animal.json').then(
+            fetch('https://api.jsonbin.io/v3/b/650b5b3cadb5f56d8f188f38', {
+                headers: {
+                    "X-Master-Key": "$2a$10$AIsQb20pI4WHJRBqF7udDeZXtNkNFhaZBvfLo7zB6BuQqeyIny8j2"
+                }
+            }).then(
                 data => data.json()
             ).then(
-                res => localStorage.setItem('data', JSON.stringify(res))
+                res => localStorage.setItem('data', JSON.stringify(res.record))
             )
         }
     })();

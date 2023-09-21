@@ -137,12 +137,12 @@ window.onload = function () {
     const resultBlock = document.querySelector('.result');
     const resultImage = document.querySelector('.result__image img');
 
-    calculateButton.addEventListener('click', async () => {
+    calculateButton.addEventListener('click', () => {
         let resultBreed = '';
         let weightRange = '';
         let heightRange = '';
 
-        const data = await JSON.parse(localStorage.getItem('data'));
+        const data = JSON.parse(localStorage.getItem('data'));
 
         numInpunts.forEach((input) => {
             if (input.value.length && (textInput.value.length >= 2 && textInput.value.length < 500)) {

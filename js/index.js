@@ -22,10 +22,11 @@ window.onload = function () {
     })();
 
     //Показываем/скрываем faq блок
-    const faqButton = document.getElementById('faq-btn');
-    const faqCloseButton = document.getElementById('faq-close-btn');
+    const faqButton = document.querySelector('#faq-btn');
+    const faqCloseButton = document.querySelector('#faq-close-btn');
     const faqBlock = document.querySelector('.faq');
 
+    //Функция собирает родичей в массив
     const getAllPreviousSiblings = (element) => {
         var siblings = [];
         while (element.previousSibling) {
@@ -134,8 +135,8 @@ window.onload = function () {
     textInput.addEventListener('keypress', validateText);
 
     //Вычисляем животное
-    const inputWeight = document.getElementById('weight');
-    const inputHeight = document.getElementById('height');
+    const inputWeight = document.querySelector('#weight');
+    const inputHeight = document.querySelector('#height');
     const calculateButton = document.querySelector('.definition__calculate');
     const definitionButton = document.querySelector('.definition__button');
     const resultMessage = document.querySelector('.definition__result');
@@ -206,7 +207,7 @@ window.onload = function () {
     });
 
     //Скачиваем картинку
-    const downloadButton = document.getElementById('download-image');
+    const downloadButton = document.querySelector('#download-image');
 
     downloadButton.addEventListener('click', () => {
         let link = document.createElement('a');
@@ -218,7 +219,7 @@ window.onload = function () {
 
     //Перезагружаем приложение
     const headerLogo = document.querySelector('.header__logo');
-    const reloadButton = document.getElementById('reload');
+    const reloadButton = document.querySelector('#reload');
 
     const reloadApp = () => {
         animals.forEach((elem) => elem.classList.remove('active'));

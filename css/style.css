@@ -647,10 +647,6 @@ body {
 }
 
 @media(max-height: 915px) {
-    /* #application {
-        height: auto;
-    } */
-
     .container {
         padding: 20px;
     }

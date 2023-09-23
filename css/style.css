@@ -37,9 +37,7 @@
 }
 
 textarea,
-input[type="text"],
-input[type="button"],
-input[type="submit"],
+input[type="number"],
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     appearance: none;
@@ -992,7 +990,7 @@ body {
     }
 
     .definition__parameter {
-        max-width: 278px;
+        max-width: 301px;
         margin: 0 auto;
     }
 
@@ -1158,19 +1156,19 @@ body {
     }
 
     #height {
-        max-width: 127px;
+        max-width: 145px;
     }
 
     #weight {
-        max-width: 144px;
+        max-width: 163px;
     }
 
     #name {
-        max-width: 166px;
+        max-width: 186px;
     }
 
     .definition__parameter {
-        max-width: 223px;
+        max-width: 241px;
     }
 }
 

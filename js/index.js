@@ -49,7 +49,7 @@ window.onload = function () {
         faqBlock.classList.remove('hide');
     });
 
-    faqCloseButton.addEventListener('click', () => {
+    const closeFAQBlock = () => {
         faqBlock.classList.add('hide');
 
         siblings.forEach((elem) => {
@@ -58,38 +58,55 @@ window.onload = function () {
                 faqButton.disabled = false;
             }
         });
+    };
+
+    faqCloseButton.addEventListener('click', () => {
+        closeFAQBlock()
     });
+
+
 
     //Определяем картинку в .definition__image
     const animalsContainer = document.querySelector('.introduction__animals');
     const animals = document.querySelectorAll('.introduction__animal');
     const animalGroupImage = document.querySelector('.definition__image img');
     const introductionButton = document.querySelector('.introduction__button');
+    let animalWeightRange = document.querySelector('#weight-range');
+    let animalHeightRange = document.querySelector('#height-range');
 
     animalsContainer.addEventListener('click', (elem) => {
+        const data = JSON.parse(localStorage.getItem('data'));
         animals.forEach((elem) => elem.classList.remove('active'));
         elem.target.classList.add('active');
 
         if (elem.target.dataset.animal === 'bear') {
             localStorage.setItem('pet', 'bear');
+            animalWeightRange.innerHTML = `${data.pets[3].range.min_weight}-${data.pets[3].range.max_weight}`;
+            animalHeightRange.innerHTML = `${data.pets[3].range.min_height}-${data.pets[3].range.max_height}`;
             introductionButton.disabled = false;
             animalGroupImage.setAttribute('src', 'images/bear.svg');
         } else if (elem.target.dataset.animal === 'cat') {
             localStorage.setItem('pet', 'cat');
+            animalWeightRange.innerHTML = `${data.pets[2].range.min_weight}-${data.pets[2].range.max_weight}`;
+            animalHeightRange.innerHTML = `${data.pets[2].range.min_height}-${data.pets[2].range.max_height}`;
             introductionButton.disabled = false;
             animalGroupImage.setAttribute('src', 'images/cat.svg');
         } else if (elem.target.dataset.animal === 'dog') {
             localStorage.setItem('pet', 'dog');
+            animalWeightRange.innerHTML = `${data.pets[1].range.min_weight}-${data.pets[1].range.max_weight}`;
+            animalHeightRange.innerHTML = `${data.pets[1].range.min_height}-${data.pets[1].range.max_height}`;
             introductionButton.disabled = false;
             animalGroupImage.setAttribute('src', 'images/dog.svg');
         } else if (elem.target.dataset.animal === 'tiger') {
             localStorage.setItem('pet', 'tiger');
+            animalWeightRange.innerHTML = `${data.pets[0].range.min_weight}-${data.pets[0].range.max_weight}`;
+            animalHeightRange.innerHTML = `${data.pets[0].range.min_height}-${data.pets[0].range.max_height}`;
             introductionButton.disabled = false;
             animalGroupImage.setAttribute('src', 'images/tiger.svg');
         }
     });
 
-    //Если выбранно животное - меняем на следующий блок
+    //Если выбранно животное - меняем на следующий блок и подставляем диапозоны параметров
     const intoductionBlock = document.querySelector('.introduction');
     const definitionBlock = document.querySelector('.definition');
 
@@ -121,13 +138,18 @@ window.onload = function () {
 
     numInpunts.forEach((elem) => {
         elem.onchange = function (e) {
-            var value = parseInt(e.target.value);
-            if (!value || value < 2 || value > 500) {
-                if (value < 2) {
-                    e.target.value = 2;
-                } else {
-                    e.target.value = 500;
-                }
+            let animalHeightArray, animalWeightArray;
+
+            if (!Array.isArray(animalHeightRange)) {
+                animalHeightArray = animalHeightRange.innerHTML.split('-');
+                animalWeightArray = animalWeightRange.innerHTML.split('-');
+            }
+
+            let value = parseInt(e.target.value);
+            if (!value || +value < (elem.classList.contains('definition__height') ? +animalHeightArray[0] : +animalWeightArray[0])) {
+                e.target.value = elem.classList.contains('definition__height') ? animalHeightArray[0] : animalWeightArray[0];
+            } else if (!value || +value > (elem.classList.contains('definition__height') ? +animalHeightArray[1] : +animalWeightArray[1])) {
+                e.target.value = elem.classList.contains('definition__height') ? animalHeightArray[1] : animalWeightArray[1];
             }
         }
     });
@@ -149,6 +171,7 @@ window.onload = function () {
         let resultBreed = '';
         let weightRange = '';
         let heightRange = '';
+        let counted = false;
 
         const data = JSON.parse(localStorage.getItem('data'));
 
@@ -156,28 +179,30 @@ window.onload = function () {
             if (input.value.length && (textInput.value.length >= 2 && textInput.value.length < 500)) {
 
                 data.pets.forEach((pet) => {
+
                     if (localStorage.getItem('pet') === pet.name) {
                         pet.breeds.forEach((i) => {
-                            if ((+inputWeight.value >= +pet.range.min_weight && +inputWeight.value <= +pet.range.max_weight) && (+inputHeight.value >= +pet.range.min_height && +inputHeight.value <= +pet.range.max_height)) {
+                            if (!counted) {
                                 if ((+inputWeight.value >= +i.data.min_weight && +inputWeight.value <= +i.data.max_weight) && (+inputHeight.value >= +i.data.min_height && +inputHeight.value <= +i.data.max_height)) {
+                                    counted = true;
                                     resultBreed = i.name;
                                     resultImage.innerHTML = resultImage.setAttribute('src', `images/animals${i.src}`);
                                     weightRange = i.data.range_weight;
                                     heightRange = i.data.range_height;
                                     definitionButton.disabled = false;
+                                } else {
+                                    resultBreed = pet.default_breed;
+                                    resultImage.innerHTML = resultImage.setAttribute('src', `images/animals${pet.default_src}`);
+                                    weightRange = inputWeight.value;
+                                    heightRange = inputHeight.value;
+                                    definitionButton.disabled = false;
                                 }
-                            } else {
-                                resultBreed = pet.default_breed;
-                                resultImage.innerHTML = resultImage.setAttribute('src', `images/animals${pet.default_src}`);
-                                weightRange = '';
-                                heightRange = '';
-                                definitionButton.disabled = false;
                             }
                         });
                     }
                 });
 
-                weightRange ? resultMessage.innerHTML = `${resultBreed} с весом ${weightRange}кг, и ростом ${heightRange}см` : resultMessage.innerHTML = `${resultBreed}`;
+                resultMessage.innerHTML = `Порода ${resultBreed} с весом ${weightRange}кг, и ростом ${heightRange}см`;
                 resultTitle.innerHTML = `Перед вами фотография “${resultBreed}”`;
                 resultName.innerHTML = `${textInput.value}`;
 
@@ -235,6 +260,7 @@ window.onload = function () {
         resultMessage.style.display = 'none';
         definitionButton.disabled = true;
         introductionButton.disabled = true;
+        closeFAQBlock();
     }
 
     headerLogo.addEventListener('click', () => {

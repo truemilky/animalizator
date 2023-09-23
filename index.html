@@ -76,18 +76,18 @@
                             <div class="definition__parameters">
                                 <div class="definition__parameter">
                                     <div class="definition__input">
-                                        Рост: <input name="height" id="height" type="number"> <span>см.</span>
+                                        Рост: <input class="definition__height" name="height" id="height" type="number"> <span>см.</span>
                                     </div>
 
-                                    <p class="definition__range">диапазон параметров (2-500)</p>
+                                    <p class="definition__range">диапазон параметров (<span id="height-range"></span>)</p>
                                 </div>
 
                                 <div class="definition__parameter">
                                     <div class="definition__input">
-                                        Вес: <input name="weight" id="weight" type="number"> <span>кг.</span>
+                                        Вес: <input class="definition__weight" name="weight" id="weight" type="number"> <span>кг.</span>
                                     </div>
 
-                                    <p class="definition__range">диапазон параметров (2-500)</p>
+                                    <p class="definition__range">диапазон параметров (<span id="weight-range"></span>)</p>
                                 </div>
 
                                 <div class="definition__parameter">
@@ -141,16 +141,17 @@
             </section>
         </div>
 
-        <div class="loader__wrapper">
-            <div class="loader">
-                <div class="loader__text">
-                    Подождите, пока мы сделаем все сложнейшие вычисления...
-                </div>
-
-                <div class="loader__spinner"></div>
-            </div>
-        </div>
+        
     </main>
+    <div class="loader__wrapper">
+        <div class="loader">
+            <div class="loader__text">
+                Подождите, пока мы сделаем все сложнейшие вычисления...
+            </div>
+
+            <div class="loader__spinner"></div>
+        </div>
+    </div>
 
     <script src="js/index.js"></script>
 </body>

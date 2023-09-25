@@ -187,8 +187,8 @@ window.onload = function () {
                                     counted = true;
                                     resultBreed = i.name;
                                     resultImage.innerHTML = resultImage.setAttribute('src', `images/animals${i.src}`);
-                                    weightRange = i.data.range_weight;
-                                    heightRange = i.data.range_height;
+                                    weightRange = inputWeight.value;
+                                    heightRange = inputHeight.value;
                                     definitionButton.disabled = false;
                                 } else {
                                     resultBreed = pet.default_breed;
@@ -202,7 +202,7 @@ window.onload = function () {
                     }
                 });
 
-                resultMessage.innerHTML = `Порода ${resultBreed} с весом ${weightRange}кг, и ростом ${heightRange}см`;
+                resultMessage.innerHTML = `${resultBreed} с весом ${weightRange}кг, и ростом ${heightRange}см`;
                 resultTitle.innerHTML = `Перед вами фотография “${resultBreed}”`;
                 resultName.innerHTML = `${textInput.value}`;
 
